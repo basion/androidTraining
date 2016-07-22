@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity
         int id = view.getId();
         if (id == R.id.bt_take_pic){
             MainActivityPermissionsDispatcher.takePicWithCheck(this);
+            // lock here
 //            takePic();
         }
     }
