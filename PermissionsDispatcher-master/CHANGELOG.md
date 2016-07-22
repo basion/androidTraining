@@ -1,0 +1,50 @@
+# ChangeLog
+
+- 2.1.2 2016/04/11
+  - Fix [#131](https://github.com/hotchemi/PermissionsDispatcher/pull/131).
+  - Add [#122](https://github.com/hotchemi/PermissionsDispatcher/pull/122).
+- 2.1.1 2016/03/30
+  - Fix [#124](https://github.com/hotchemi/PermissionsDispatcher/issues/124).
+- 2.1.0 2016/03/20
+  - Fix [#114](https://github.com/hotchemi/PermissionsDispatcher/issues/114).
+- 2.0.9 2016/03/19
+  - Fix [#112](https://github.com/hotchemi/PermissionsDispatcher/issues/112).
+- 2.0.8 2016/03/09
+  - Fix [#107](https://github.com/hotchemi/PermissionsDispatcher/issues/107).
+  - Fix [#109](https://github.com/hotchemi/PermissionsDispatcher/issues/109).
+- 2.0.7 2016/02/16
+  - Kotlin 1.0 support [#98](https://github.com/hotchemi/PermissionsDispatcher/pull/98).
+- 2.0.6 2016/02/15
+  - Add lint support [#75](https://github.com/hotchemi/PermissionsDispatcher/pull/75).
+  - Update kotlin version [#91](https://github.com/hotchemi/PermissionsDispatcher/pull/91).
+  - Performance improvement [#93](https://github.com/hotchemi/PermissionsDispatcher/pull/93).
+- 2.0.5 2016/01/29
+  - Back to support JDK 1.7.
+- 2.0.4 2016/01/22
+  - Fix [Issue #78](https://github.com/hotchemi/PermissionsDispatcher/issues/78)
+- 2.0.3 2016/01/18
+ - **This version has a bug which @OnNeverAskAgain is never called. Please don't use it.** 
+ - Add [#65](https://github.com/hotchemi/PermissionsDispatcher/pull/65).
+ - Add [#72](https://github.com/hotchemi/PermissionsDispatcher/pull/72).
+- 2.0.2 2016/01/13
+ - Fix [#63](https://github.com/hotchemi/PermissionsDispatcher/issues/63).
+- 2.0.1 2015/12/04
+    - Add `@NeverAskAgain`.
+- 1.2.1 2015/09/14
+    - Fix #14 and #16.
+- 1.2.0 2015/09/07
+    - Add `@DeniedPermission` and `@DeniedPermissions`.
+- 1.1.2 2015/08/26
+    - Downgrade processor jdk version to 1.7.
+- 1.1.1 2015/08/25
+    - Fix some bugs.
+- 1.1.0 2015/08/24
+    - Add `@NeedsPermissions` and `@ShowRationales`.
+- 1.0.1 2015/08/20
+    - Stop calling rationale methods in the OnRequestPermissionsResult.
+- 1.0.0 2015/08/19
+    - Using support v4 compat classes.
+- 0.9.0 2015/08/18
+    - Prepare for preview 3(final release).
+- 0.5.0 2015/08/16
+    - Initial release.

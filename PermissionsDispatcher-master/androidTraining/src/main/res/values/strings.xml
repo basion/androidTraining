@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AndroidTraining</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="button_allow">允许</string>
+    <string name="button_deny">拒绝</string>
+
+    <string name="show_camera">Show camera preview</string>
+    <string name="show_contacts">Show and add contacts</string>
+    <string name="main_introduction">Click the buttons below to show a camera preview or access the contacts database.\nNote that the contacts option is only available on Android M to illustrate the use of optional, M-only permissions that are not requested on lower SDK platforms.</string>
+    <string name="permission_camera_rationale">需要读写内存卡权限保存照片</string>
+    <string name="permission_contacts_rationale">Contacts permissions are needed to demonstrate access to the contacts database.</string>
+    <string name="permission_camera_denied">读写内存卡权限被拒，请在设置，权限管理中开启</string>
+    <string name="permission_camera_never_askagain">读写内存卡权限被永久拒绝</string>
+</resources>
