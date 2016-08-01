@@ -13,6 +13,8 @@ import permissions.dispatcher.*;
 import permissions.dispatcher.sample.camera.CameraPreviewFragment;
 import permissions.dispatcher.sample.contacts.ContactsFragment;
 
+import static permissions.dispatcher.sample.MainActivityPermissionsDispatcher.showCameraWithCheck;
+
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.button_camera:
                 // NOTE: delegate the permission handling to generated method
-                MainActivityPermissionsDispatcher.showCameraWithCheck(this);
+                showCameraWithCheck(this);
                 break;
             case R.id.button_contacts:
                 // NOTE: delegate the permission handling to generated method
