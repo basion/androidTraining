@@ -3,6 +3,7 @@ package cn.com.hakim.androidtraining;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -73,9 +74,12 @@ public class MainActivity extends AppCompatActivity
         initData();
     }
     Button takePicButton;
+    Button nextButton;
     private void initView() {
         takePicButton = (Button) findViewById(R.id.bt_take_pic);
         takePicButton.setOnClickListener(this);
+        nextButton = (Button) findViewById(R.id.bt_next);
+        nextButton.setOnClickListener(this);
     }
 
     private void initData() {
@@ -146,6 +150,10 @@ public class MainActivity extends AppCompatActivity
             MainActivityPermissionsDispatcher.takePicWithCheck(this);
             // lock here
 //            takePic();
+        }else if (id == R.id.bt_next){
+
+            Intent intent = new Intent(this,RecycleActivity.class);
+            startActivity(intent);
         }
     }
 
