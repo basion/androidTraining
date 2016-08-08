@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class MyFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView view) {
-        view.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        view.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         List<Integer> datas = new LinkedList<>();
         datas.add(R.drawable.img_1);
         datas.add(R.drawable.img_2);
@@ -58,8 +59,16 @@ public class MyFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, final int position) {
            int resId = imgList.get(position);
+            holder.img.setImageResource(resId);
+            holder.mTextView.setText("name"+position);
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext,"click"+position,Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @Override
@@ -70,8 +79,12 @@ public class MyFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView img;
             TextView mTextView;
+            View mView;
             public ViewHolder(View itemView) {
                 super(itemView);
+                mView = itemView;
+                img = (ImageView) itemView.findViewById(R.id.img_head);
+                mTextView = (TextView) itemView.findViewById(R.id.tv_name);
             }
         }
     }

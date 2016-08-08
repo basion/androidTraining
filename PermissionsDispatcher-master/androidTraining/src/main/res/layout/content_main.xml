@@ -32,6 +32,12 @@
         android:layout_toRightOf="@+id/bt_take_pic"
         android:text="下一页"
         android:id="@+id/bt_next"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/bt_next"
+        android:text="tab"
+        android:id="@+id/bt_tab_layout"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -41,4 +47,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
     </LinearLayout>
+
 </RelativeLayout>

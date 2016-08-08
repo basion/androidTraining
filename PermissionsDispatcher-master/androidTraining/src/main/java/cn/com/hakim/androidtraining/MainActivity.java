@@ -12,7 +12,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +27,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -39,6 +46,12 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +85,22 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         initView();
         initData();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
     Button takePicButton;
     Button nextButton;
+    Button tabButton;
+
     private void initView() {
         takePicButton = (Button) findViewById(R.id.bt_take_pic);
         takePicButton.setOnClickListener(this);
         nextButton = (Button) findViewById(R.id.bt_next);
         nextButton.setOnClickListener(this);
+        tabButton = (Button) findViewById(R.id.bt_tab_layout);
+        tabButton.setOnClickListener(this);
     }
 
     private void initData() {
@@ -100,7 +121,27 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem searchItem = menu.findItem(R.id.nav_camera);
+        SearchView searchView =
+                (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                doQuery(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e("newText=",newText);
+                return false;
+            }
+        });
         return true;
+    }
+
+    private void doQuery(String query) {
+        Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -146,13 +187,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.bt_take_pic){
+        if (id == R.id.bt_take_pic) {
             MainActivityPermissionsDispatcher.takePicWithCheck(this);
             // lock here
 //            takePic();
-        }else if (id == R.id.bt_next){
+        } else if (id == R.id.bt_next) {
 
-            Intent intent = new Intent(this,RecycleActivity.class);
+            Intent intent = new Intent(this, RecycleActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.bt_tab_layout) {
+            Intent intent = new Intent(this, TabLayoutActivity.class);
             startActivity(intent);
         }
     }
@@ -164,9 +208,9 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             File picFile = createFile();
-                if (picPath!=null&&!picPath.equals("")) {
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picFile));
-                }
+            if (picPath != null && !picPath.equals("")) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picFile));
+            }
             startActivityForResult(intent, TAKE_PHOTO_REQ);
         } else {
             Snackbar.make(takePicButton, "哪个sb厂商改了相机api", Snackbar.LENGTH_LONG)
@@ -174,7 +218,9 @@ public class MainActivity extends AppCompatActivity
 //            Toast.makeText(this,"哪个sb厂商改了相机api",Toast.LENGTH_LONG).show();
         }
     }
+
     private String picPath;
+
     private File createFile() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -187,7 +233,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
         File tempFile = null;
-        tempFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/training/" + "pic"+timeStamp + ".jpg");
+        tempFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/training/" + "pic" + timeStamp + ".jpg");
         picPath = tempFile.getAbsolutePath();
         return tempFile;
     }
@@ -198,22 +244,26 @@ public class MainActivity extends AppCompatActivity
         // NOTE: delegate the permission handling to generated method
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
+
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void showRationaleForCamera(PermissionRequest request) {
         // NOTE: Show a rationale to explain why the permission is needed, e.g. with a dialog.
         // Call proceed() or cancel() on the provided PermissionRequest to continue or abort
         showRationaleDialog(R.string.permission_camera_rationale, request);
     }
+
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onCameraDenied() {
         // NOTE: Deal with a denied permission, e.g. by showing specific UI
         // or disabling certain functionality
         Toast.makeText(this, R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
     }
+
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onCameraNeverAskAgain() {
         Toast.makeText(this, R.string.permission_camera_never_askagain, Toast.LENGTH_SHORT).show();
     }
+
     private void showRationaleDialog(@StringRes int messageResId, final PermissionRequest request) {
         new AlertDialog.Builder(this)
                 .setPositiveButton(R.string.button_allow, new DialogInterface.OnClickListener() {
@@ -231,5 +281,45 @@ public class MainActivity extends AppCompatActivity
                 .setCancelable(false)
                 .setMessage(messageResId)
                 .show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://cn.com.hakim.androidtraining/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(mClient, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://cn.com.hakim.androidtraining/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(mClient, viewAction);
+        mClient.disconnect();
     }
 }
