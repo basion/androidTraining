@@ -18,34 +18,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
+
     <Button
         android:id="@+id/bt_take_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="拍照"
-        android:layout_toRightOf="@+id/tv_hello"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_toRightOf="@+id/tv_hello"
+        android:text="拍照"/>
+
     <Button
+        android:id="@+id/bt_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/bt_take_pic"
-        android:text="下一页"
-        android:id="@+id/bt_next"/>
+        android:text="下一页"/>
+
     <Button
+        android:id="@+id/bt_tab_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/bt_next"
-        android:text="tab"
-        android:id="@+id/bt_tab_layout"/>
+        android:text="tab"/>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_take_pic"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_name"
+            android:hint="请输入姓名"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入密码"/>
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
+
 
 </RelativeLayout>

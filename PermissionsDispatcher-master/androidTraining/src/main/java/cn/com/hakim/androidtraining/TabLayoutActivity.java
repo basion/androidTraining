@@ -46,6 +46,7 @@ public class TabLayoutActivity extends AppCompatActivity {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MyFragment(),"第一个");
         adapter.addFragment(new MyFragment(),"第二个");
+        adapter.addFragment(new ItemTouchHelperFragment(),"第三个");
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }

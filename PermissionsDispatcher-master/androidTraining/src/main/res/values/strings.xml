@@ -15,4 +15,17 @@
     <string name="permission_contacts_rationale">Contacts permissions are needed to demonstrate access to the contacts database.</string>
     <string name="permission_camera_denied">读写内存卡权限被拒，请在设置，权限管理中开启</string>
     <string name="permission_camera_never_askagain">读写内存卡权限被永久拒绝</string>
+
+    <array name="dummy_items">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+        <item>Nine</item>
+        <item>Ten</item>
+    </array>
 </resources>

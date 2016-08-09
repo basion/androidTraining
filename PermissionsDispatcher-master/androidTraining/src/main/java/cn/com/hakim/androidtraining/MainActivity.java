@@ -1,6 +1,7 @@
 package cn.com.hakim.androidtraining;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,8 +13,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -60,21 +64,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -94,6 +83,9 @@ public class MainActivity extends AppCompatActivity
     Button nextButton;
     Button tabButton;
 
+    TextInputEditText nameInput;
+    AppCompatEditText passInput;
+
     private void initView() {
         takePicButton = (Button) findViewById(R.id.bt_take_pic);
         takePicButton.setOnClickListener(this);
@@ -101,6 +93,40 @@ public class MainActivity extends AppCompatActivity
         nextButton.setOnClickListener(this);
         tabButton = (Button) findViewById(R.id.bt_tab_layout);
         tabButton.setOnClickListener(this);
+        nameInput = (TextInputEditText) findViewById(R.id.input_name);
+        passInput = (AppCompatEditText) findViewById(R.id.input_pass);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = nameInput.getText().toString().trim();
+                if (name == null || name.equals("")) {
+                    nameInput.setError("姓名不能为空");
+                    nameInput.requestFocus();
+                    requestInputWindows();
+                    return;
+                } else if (!name.matches("[\\u4e00-\\u9fa5]{2,4}")) {
+                    nameInput.setError("姓名格式为2-4位中文");
+                    nameInput.requestFocus();
+                    requestInputWindows();
+                    return;
+                }
+                String pass = passInput.getText().toString().trim();
+                if (pass == null || pass.equals("")) {
+                    passInput.setError("密码不能为空");
+                    passInput.requestFocus();
+                    requestInputWindows();
+                    return;
+                }
+                Snackbar.make(view, "输入正确", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    private void requestInputWindows() {
+        InputMethodManager imm = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void initData() {
@@ -133,7 +159,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.e("newText=",newText);
+                Log.e("newText=", newText);
                 return false;
             }
         });
@@ -141,7 +167,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void doQuery(String query) {
-        Toast.makeText(this,query,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
     }
 
     @Override
