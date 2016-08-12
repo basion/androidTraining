@@ -43,6 +43,7 @@
         android:text="tab"/>
 
     <LinearLayout
+        android:id="@+id/layout_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bt_take_pic"
@@ -63,7 +64,17 @@
                 android:layout_height="wrap_content"
                 android:hint="请输入密码"/>
         </android.support.design.widget.TextInputLayout>
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#ff0000"
+            android:hint="请输入账号"/>
     </LinearLayout>
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_zhihu"
+        android:layout_below="@+id/layout_input"
+        android:text="知乎"/>
 
 </RelativeLayout>

@@ -40,14 +40,13 @@ public class RecycleActivity extends AppCompatActivity{
          <meta-data
          android:name="android.support.PARENT_ACTIVITY"
          android:value=".MainActivity"/>
-         </activity>
+         </activity>-
          */
         //回掉方法是onOptionsItemSelected，可重写该方法
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("测试标题");
         collapsingToolbar.setExpandedTitleColor(Color.RED);//展开时颜色
         collapsingToolbar.setCollapsedTitleTextColor(Color.GREEN);//收缩后的颜色
-
         initData();
         initView();
     }

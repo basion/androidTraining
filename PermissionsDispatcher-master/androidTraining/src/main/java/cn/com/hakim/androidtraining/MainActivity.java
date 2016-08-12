@@ -82,11 +82,13 @@ public class MainActivity extends AppCompatActivity
     Button takePicButton;
     Button nextButton;
     Button tabButton;
-
+    Button zhihuButton;
     TextInputEditText nameInput;
     AppCompatEditText passInput;
 
     private void initView() {
+        zhihuButton = (Button) findViewById(R.id.bt_zhihu);
+        zhihuButton.setOnClickListener(this);
         takePicButton = (Button) findViewById(R.id.bt_take_pic);
         takePicButton.setOnClickListener(this);
         nextButton = (Button) findViewById(R.id.bt_next);
@@ -223,6 +225,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.bt_tab_layout) {
             Intent intent = new Intent(this, TabLayoutActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_zhihu){
+            Intent intent = new Intent(this,ZhiHuActivity.class);
             startActivity(intent);
         }
     }
