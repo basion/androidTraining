@@ -3,6 +3,7 @@ package cn.com.hakim.androidtraining;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,7 +39,6 @@ public class ZhiHuActivity extends AppCompatActivity {
     private void initData() {
 
     }
-
     private void initView() {
         mTabLayout = (TabLayout) findViewById(R.id.tab_main);
         mViewPager = (ViewPager) findViewById(R.id.pager_main);
