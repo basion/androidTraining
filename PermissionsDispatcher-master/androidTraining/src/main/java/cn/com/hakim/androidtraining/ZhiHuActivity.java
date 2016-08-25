@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.com.hakim.androidtraining.behavior.MyBottomBehavior;
 import cn.com.hakim.androidtraining.fragment.TabAFragment;
 import cn.com.hakim.androidtraining.fragment.TabBFragment;
 import cn.com.hakim.androidtraining.fragment.TabCFragment;
@@ -39,17 +40,41 @@ public class ZhiHuActivity extends AppCompatActivity {
     private void initData() {
 
     }
+    BottomSheetBehavior mBottomSheetBehavior;
     private void initView() {
         mTabLayout = (TabLayout) findViewById(R.id.tab_main);
         mViewPager = (ViewPager) findViewById(R.id.pager_main);
         setupTablayout();
     }
 
+    private MyBottomBehavior.OnStateChangedListener onStateChangedListener = new MyBottomBehavior.OnStateChangedListener() {
+        @Override
+        public void onChanged(boolean isShow) {
+            mBottomSheetBehavior.setState(isShow ? BottomSheetBehavior.STATE_EXPANDED : BottomSheetBehavior.STATE_COLLAPSED);
+        }
+    };
+    public void setZhihuBehavior(MyBottomBehavior behavior){
+        if (behavior!=null){
+            behavior.setOnStateChangedListener(onStateChangedListener);
+        }
+    }
+    TabAFragment aFragment;
+    TabBFragment bFragment;
+    TabCFragment cFragment;
     private void setupTablayout() {
+        if (aFragment == null){
+            aFragment = new TabAFragment();
+        }
+        if (bFragment == null){
+            bFragment = new TabBFragment();
+        }
+        if (cFragment == null){
+            cFragment = new TabCFragment();
+        }
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),this);
-        adapter.addFragment(new TabAFragment(),"1",R.drawable.icon_tab_a);
-        adapter.addFragment(new TabBFragment(),"2",R.drawable.icon_tab_b);
-        adapter.addFragment(new TabCFragment(),"3",R.drawable.icon_tab_c);
+        adapter.addFragment(aFragment,"1",R.drawable.icon_tab_a);
+        adapter.addFragment(bFragment,"2",R.drawable.icon_tab_b);
+        adapter.addFragment(cFragment,"3",R.drawable.icon_tab_c);
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
@@ -58,7 +83,7 @@ public class ZhiHuActivity extends AppCompatActivity {
                 tab.setCustomView(adapter.getTabView(i));
             }
         }
-
+        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.tab_main));
     }
 
     static class PagerAdapter extends FragmentPagerAdapter {
@@ -103,6 +128,17 @@ public class ZhiHuActivity extends AppCompatActivity {
             //img.setImageResource(imageResId[position]);
             img.setImageResource(mIconList.get(position));
             return v;
+        }
+    }
+
+    private boolean initialize = false;
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (!initialize) {
+            initialize = true;
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
     }
 }

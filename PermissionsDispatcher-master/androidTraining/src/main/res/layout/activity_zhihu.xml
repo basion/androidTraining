@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/colorPrimaryDark"
+        app:layout_behavior="@string/bottom_sheet_behavior"
         app:tabIndicatorHeight="0dp"
         app:tabTextColor="@color/colorPrimary"
         app:tabSelectedTextColor="@color/colorAccent"
