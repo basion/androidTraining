@@ -4,7 +4,10 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,6 +40,13 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity android:name=".ZhiHuActivity"/>
+        <activity android:name=".ZhihuNewActivity"/>
+        <activity
+            android:name=".CameraActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Camera2Activity"
+            android:screenOrientation="portrait"/>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -83,10 +82,22 @@ public class MainActivity extends AppCompatActivity
     Button nextButton;
     Button tabButton;
     Button zhihuButton;
+    Button xposeButton;
+    Button bottomSheet;
+    Button testBottomSheet;
+    Button takePicActivity;
     TextInputEditText nameInput;
     AppCompatEditText passInput;
 
     private void initView() {
+        takePicActivity = (Button) findViewById(R.id.bt_takepic_activity);
+        takePicActivity.setOnClickListener(this);
+        testBottomSheet = (Button) findViewById(R.id.bt_zhihu_test);
+        testBottomSheet.setOnClickListener(this);
+        bottomSheet = (Button) findViewById(R.id.bt_bottom_sheet);
+        bottomSheet.setOnClickListener(this);
+        xposeButton = (Button) findViewById(R.id.bt_test_sposed);
+        xposeButton.setOnClickListener(this);
         zhihuButton = (Button) findViewById(R.id.bt_zhihu);
         zhihuButton.setOnClickListener(this);
         takePicButton = (Button) findViewById(R.id.bt_take_pic);
@@ -229,9 +240,27 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.bt_zhihu){
             Intent intent = new Intent(this,ZhiHuActivity.class);
             startActivity(intent);
+        }else if (id == R.id.bt_test_sposed){
+            toastXposted();
+        }else if (id == R.id.bt_bottom_sheet){
+
+        }else if (id == R.id.bt_zhihu_test){
+            Intent intent = new Intent(this,ZhihuNewActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_takepic_activity){
+            Intent intent = new Intent(this,CameraActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_camera2){
+            Intent intent = new Intent(this,Camera2Activity.class);
+            startActivity(intent);
         }
     }
 
+    private int value = 1000;
+    private int toastXposted(){
+        Toast.makeText(this,"value="+value,Toast.LENGTH_SHORT).show();
+        return value*10;
+    }
     private static final int TAKE_PHOTO_REQ = 0x11;
 
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -280,19 +309,19 @@ public class MainActivity extends AppCompatActivity
     void showRationaleForCamera(PermissionRequest request) {
         // NOTE: Show a rationale to explain why the permission is needed, e.g. with a dialog.
         // Call proceed() or cancel() on the provided PermissionRequest to continue or abort
-        showRationaleDialog(R.string.permission_camera_rationale, request);
+        showRationaleDialog(R.string.permission_storage_rationale, request);
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onCameraDenied() {
         // NOTE: Deal with a denied permission, e.g. by showing specific UI
         // or disabling certain functionality
-        Toast.makeText(this, R.string.permission_camera_denied, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.permission_storage_denied, Toast.LENGTH_SHORT).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onCameraNeverAskAgain() {
-        Toast.makeText(this, R.string.permission_camera_never_askagain, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.permission_storage_never_askagain, Toast.LENGTH_SHORT).show();
     }
 
     private void showRationaleDialog(@StringRes int messageResId, final PermissionRequest request) {

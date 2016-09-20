@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,6 +40,7 @@ public class MyBottomBehavior extends FloatingActionButton.Behavior{
             }
         }
     }
+
 
     private OnStateChangedListener mOnStateChangedListener;
     public void setOnStateChangedListener(OnStateChangedListener mOnStateChangedListener) {

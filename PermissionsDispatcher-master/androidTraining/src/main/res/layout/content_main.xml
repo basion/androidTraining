@@ -76,5 +76,40 @@
         android:id="@+id/bt_zhihu"
         android:layout_below="@+id/layout_input"
         android:text="知乎"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_test_sposed"
+        android:text="xposed"
+        android:layout_alignBottom="@+id/bt_zhihu"
+        android:layout_toRightOf="@+id/bt_zhihu"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_bottom_sheet"
+        android:text="选择"
+        android:layout_alignBottom="@+id/bt_test_sposed"
+        android:layout_toRightOf="@+id/bt_test_sposed"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_zhihu_test"
+        android:text="测试bottom"
+        android:layout_toRightOf="@+id/bt_bottom_sheet"
+        android:layout_alignBottom="@+id/bt_bottom_sheet"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_takepic_activity"
+        android:text="拍照activity"
+        android:layout_alignLeft="@+id/bt_zhihu"
+        android:layout_below="@+id/bt_zhihu"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_camera2"
+        android:text="相机2"
+        android:layout_alignBottom="@+id/bt_takepic_activity"
+        android:layout_toRightOf="@+id/bt_takepic_activity"/>
 
 </RelativeLayout>

@@ -2,6 +2,9 @@ package cn.com.hakim.androidtraining;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabLayout;
@@ -10,11 +13,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,23 +46,36 @@ public class ZhiHuActivity extends AppCompatActivity {
     private void initData() {
 
     }
+    MyHandler mHandler;
     BottomSheetBehavior mBottomSheetBehavior;
     private void initView() {
         mTabLayout = (TabLayout) findViewById(R.id.tab_main);
         mViewPager = (ViewPager) findViewById(R.id.pager_main);
         setupTablayout();
+        View view  = findViewById(R.id.layout_parent);
+//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        mHandler = new MyHandler(this);
+        Message message = mHandler.obtainMessage();
+        message.what = MSG_SWITCH_TAB;
+        message.obj = 2;
+        mHandler.sendMessageDelayed(message,3000);
     }
 
     private MyBottomBehavior.OnStateChangedListener onStateChangedListener = new MyBottomBehavior.OnStateChangedListener() {
         @Override
         public void onChanged(boolean isShow) {
             mBottomSheetBehavior.setState(isShow ? BottomSheetBehavior.STATE_EXPANDED : BottomSheetBehavior.STATE_COLLAPSED);
+            int state = mBottomSheetBehavior.getState();
+            Log.e("setBottomBarState","==state = "+state);
         }
     };
     public void setZhihuBehavior(MyBottomBehavior behavior){
         if (behavior!=null){
             behavior.setOnStateChangedListener(onStateChangedListener);
         }
+    }
+    public void setBottomBarState(boolean isShow){
+        mBottomSheetBehavior.setState(isShow ? BottomSheetBehavior.STATE_EXPANDED : BottomSheetBehavior.STATE_COLLAPSED);
     }
     TabAFragment aFragment;
     TabBFragment bFragment;
@@ -83,7 +102,30 @@ public class ZhiHuActivity extends AppCompatActivity {
                 tab.setCustomView(adapter.getTabView(i));
             }
         }
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.e("onTabSelected","========");
+                if (mBottomSheetBehavior!=null){
+                    int state =  mBottomSheetBehavior.getState();
+                    int visibleState = mTabLayout.getVisibility();
+                    Log.e("onTabSelected","visibleState ="+visibleState);
+                    Log.e("onTabSelected","state = "+state);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.tab_main));
+        mBottomSheetBehavior.setHideable(false);
     }
 
     static class PagerAdapter extends FragmentPagerAdapter {
@@ -140,5 +182,43 @@ public class ZhiHuActivity extends AppCompatActivity {
             initialize = true;
             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
+    }
+    private static final int MSG_SWITCH_TAB = 0x11;
+    private static final int MSG_GET_STATE = 0x12;
+    static class MyHandler extends Handler{
+        WeakReference<ZhiHuActivity> mReference;
+        public MyHandler(ZhiHuActivity activity) {
+            if (activity!=null){
+                mReference = new WeakReference<ZhiHuActivity>(activity);
+            }
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            int msg_type = msg.what;
+            if (msg_type == MSG_SWITCH_TAB){
+                int position = (int) msg.obj;
+                ZhiHuActivity activity = mReference.get();
+                if (activity!=null){
+                    activity.setTab(position);
+                    Message message = obtainMessage();
+                    message.what = MSG_GET_STATE;
+                    sendMessageDelayed(message,1000);
+                }
+            }else if (msg_type == MSG_GET_STATE){
+                ZhiHuActivity activity = mReference.get();
+                if (activity!=null){
+                    activity.getState();
+                }
+            }
+        }
+    }
+    protected void setTab(int position){
+        mViewPager.setCurrentItem(position);
+    }
+    protected void getState(){
+       int state = mBottomSheetBehavior.getState();
+        Log.e("getState","state = "+state);
     }
 }
