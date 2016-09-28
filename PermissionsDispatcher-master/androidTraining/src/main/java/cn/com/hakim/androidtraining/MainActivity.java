@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     Button takePicButton;
+    Button camera2Button;
     Button nextButton;
     Button tabButton;
     Button zhihuButton;
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity
     AppCompatEditText passInput;
 
     private void initView() {
+        camera2Button = (Button) findViewById(R.id.bt_camera2);
+        camera2Button.setOnClickListener(this);
         takePicActivity = (Button) findViewById(R.id.bt_takepic_activity);
         takePicActivity.setOnClickListener(this);
         testBottomSheet = (Button) findViewById(R.id.bt_zhihu_test);
@@ -251,7 +254,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this,CameraActivity.class);
             startActivity(intent);
         }else if (id == R.id.bt_camera2){
-            Intent intent = new Intent(this,Camera2Activity.class);
+            Intent intent = new Intent(this,Camera2ActivityNew.class);
             startActivity(intent);
         }
     }
