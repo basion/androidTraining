@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="ball"
+            type="cn.com.hakim.androidtraining.model.Ball"/>
+    </data>
+    <RelativeLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ToggleButton
+            android:id="@+id/checkbox_ball"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="@{ball.id}"
+            android:textOn="@{ball.id}"
+            android:textOff="@{ball.id}"
+            android:textColor="@color/colorDark33"
+            android:background="@drawable/bg_red_ball_selector"
+            />
+    </RelativeLayout>
+</layout>

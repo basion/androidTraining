@@ -42,4 +42,7 @@
     <string name="key_internet">internet</string>
     <string name="internet_title">Internet mode</string>
     <string name="internet">enable internet state</string>
+
+
+    <color name="color_dark">#333</color>
 </resources>

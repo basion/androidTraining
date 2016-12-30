@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.SearchView;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -29,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -77,7 +80,8 @@ public class MainActivity extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
+    Button elemaButtonN;
+    Button behaviorButton;
     Button takePicButton;
     Button camera2Button;
     Button nextButton;
@@ -87,10 +91,25 @@ public class MainActivity extends AppCompatActivity
     Button bottomSheet;
     Button testBottomSheet;
     Button takePicActivity;
+    Button ballsButton;
+    Button elemaButton;
     TextInputEditText nameInput;
     AppCompatEditText passInput;
-
+    Button contentButton;
+    Button nestedWtoButton;
     private void initView() {
+        elemaButtonN = (Button) findViewById(R.id.bt_elema_n);
+        elemaButtonN.setOnClickListener(this);
+        nestedWtoButton = (Button) findViewById(R.id.nested_two);
+        nestedWtoButton.setOnClickListener(this);
+        elemaButton = (Button) findViewById(R.id.bt_elema);
+        elemaButton.setOnClickListener(this);
+        behaviorButton = (Button) findViewById(R.id.bt_behavior);
+        behaviorButton.setOnClickListener(this);
+        ballsButton = (Button) findViewById(R.id.bt_balls);
+        ballsButton.setOnClickListener(this);
+        contentButton = (Button) findViewById(R.id.bt_contact);
+        contentButton.setOnClickListener(this);
         camera2Button = (Button) findViewById(R.id.bt_camera2);
         camera2Button.setOnClickListener(this);
         takePicActivity = (Button) findViewById(R.id.bt_takepic_activity);
@@ -117,25 +136,33 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 String name = nameInput.getText().toString().trim();
                 if (name == null || name.equals("")) {
-                    nameInput.setError("姓名不能为空");
-                    nameInput.requestFocus();
-                    requestInputWindows();
-                    return;
-                } else if (!name.matches("[\\u4e00-\\u9fa5]{2,4}")) {
-                    nameInput.setError("姓名格式为2-4位中文");
+                    nameInput.setError("手机号不能为空");
                     nameInput.requestFocus();
                     requestInputWindows();
                     return;
                 }
-                String pass = passInput.getText().toString().trim();
-                if (pass == null || pass.equals("")) {
-                    passInput.setError("密码不能为空");
-                    passInput.requestFocus();
-                    requestInputWindows();
-                    return;
-                }
-                Snackbar.make(view, "输入正确", Snackbar.LENGTH_LONG)
+                String handledPhone = name.replaceAll("\\D","");
+//                Snackbar.make(view, "手机号码为"+handledPhone, Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                if (handledPhone.startsWith("86")){
+                                    Snackbar.make(view, "手机号码为"+handledPhone, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                }
+//                else if (!name.matches("[\\u4e00-\\u9fa5]{2,4}")) {
+//                    nameInput.setError("姓名格式为2-4位中文");
+//                    nameInput.requestFocus();
+//                    requestInputWindows();
+//                    return;
+//                }
+//                String pass = passInput.getText().toString().trim();
+//                if (pass == null || pass.equals("")) {
+//                    passInput.setError("密码不能为空");
+//                    passInput.requestFocus();
+//                    requestInputWindows();
+//                    return;
+//                }
+//                Snackbar.make(view, "输入正确", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
     }
@@ -146,7 +173,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initData() {
-
     }
 
     @Override
@@ -255,6 +281,27 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.bt_camera2){
             Intent intent = new Intent(this,Camera2ActivityNew.class);
+            startActivity(intent);
+        }else if(id == R.id.bt_contact){
+            Intent intent = new Intent(this,ContactActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_balls){
+            Intent intent = new Intent(this,DoubleBallsActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_behavior){
+            Intent intent = new Intent(this,BehaviorActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_elema){
+            Intent intent = new Intent(this,ElemaActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_scroll){
+            Intent intent = new Intent(this,ScrollTestActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nested_two){
+            Intent intent = new Intent(this,NestedTwoActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_elema_n){
+            Intent intent = new Intent(this,ElemaActivityN.class);
             startActivity(intent);
         }
     }

@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -44,7 +46,7 @@ import android.widget.TextView;
  * 
  * @author André Silva <asilva@lasige.di.fc.ul.pt>
  */
-public class VictimActivity extends Activity {
+public class VictimActivity extends AppCompatActivity {
 	
 	/* controls */
 	private Button mBtnSendMessage;

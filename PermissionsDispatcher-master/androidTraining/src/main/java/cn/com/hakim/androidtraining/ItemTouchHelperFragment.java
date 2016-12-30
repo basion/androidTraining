@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.com.hakim.androidtraining.adapter.RecyclerListAdapter;
 import cn.com.hakim.androidtraining.helper.OnStartDragListener;
 import cn.com.hakim.androidtraining.helper.SimpleItemTouchHelperCallback;
 

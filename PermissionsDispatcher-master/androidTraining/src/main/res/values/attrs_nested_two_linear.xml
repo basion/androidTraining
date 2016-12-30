@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NestedTwoLinearLayout">
+        <attr name="hierarchy_level" format="integer"/>
+        <attr name="hide_size" format="dimension"/>
+    </declare-styleable>
+</resources>

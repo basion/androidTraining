@@ -51,7 +51,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/input_name"
-            android:hint="请输入姓名"
+            android:hint="请输入手机号"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -70,12 +70,7 @@
             android:shadowColor="#ff0000"
             android:hint="请输入账号"/>
     </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_zhihu"
-        android:layout_below="@+id/layout_input"
-        android:text="知乎"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,13 +92,7 @@
         android:text="测试bottom"
         android:layout_toRightOf="@+id/bt_bottom_sheet"
         android:layout_alignBottom="@+id/bt_bottom_sheet"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_takepic_activity"
-        android:text="拍照activity"
-        android:layout_alignLeft="@+id/bt_zhihu"
-        android:layout_below="@+id/bt_zhihu"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,4 +101,72 @@
         android:layout_alignBottom="@+id/bt_takepic_activity"
         android:layout_toRightOf="@+id/bt_takepic_activity"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_zhihu"
+        android:text="知乎"
+        android:layout_below="@+id/layout_input"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_takepic_activity"
+        android:text="拍照activity"
+        android:layout_below="@+id/bt_test_sposed"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="联系人"
+        android:layout_toRightOf="@+id/bt_camera2"
+        android:layout_below="@+id/bt_zhihu_test"
+        android:id="@+id/bt_contact"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="球"
+        android:layout_toRightOf="@+id/bt_contact"
+        android:layout_below="@+id/bt_zhihu_test"
+        android:id="@+id/bt_balls"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="behavior"
+        android:id="@+id/bt_behavior"
+        android:layout_below="@+id/bt_takepic_activity"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="饿了么"
+        android:id="@+id/bt_elema"
+        android:layout_toRightOf="@+id/bt_behavior"
+        android:layout_below="@+id/bt_takepic_activity"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scroll"
+        android:id="@+id/bt_scroll"
+        android:layout_toRightOf="@+id/bt_elema"
+        android:layout_below="@+id/bt_takepic_activity"
+        android:onClick="onClick"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nestedTwo"
+        android:id="@+id/nested_two"
+        android:layout_toRightOf="@+id/bt_scroll"
+        android:layout_below="@+id/bt_takepic_activity"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_elema_n"
+        android:layout_below="@+id/bt_behavior"
+        android:text="饿了吗"/>
 </RelativeLayout>

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.hakim.androidtraining.GridDividerDecorationOld;
-import cn.com.hakim.androidtraining.MyAdapter;
+import cn.com.hakim.androidtraining.adapter.MyAdapter;
 import cn.com.hakim.androidtraining.R;
 import cn.com.hakim.androidtraining.ZhiHuActivity;
 import cn.com.hakim.androidtraining.behavior.MyBottomBehavior;

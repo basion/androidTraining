@@ -91,6 +91,7 @@ public class CameraActivity extends AppCompatActivity implements SurfaceHolder.C
     void onStorageDenied() {
         // NOTE: Deal with a denied permission, e.g. by showing specific UI
         // or disabling certain functionality
+        //shouldShowRequestPermissionRationale判断是否可以再次请求权限。如果返回false说明用户选择了拒绝并勾选不再提示
         Toast.makeText(this, R.string.permission_storage_denied, Toast.LENGTH_SHORT).show();
     }
     @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA})

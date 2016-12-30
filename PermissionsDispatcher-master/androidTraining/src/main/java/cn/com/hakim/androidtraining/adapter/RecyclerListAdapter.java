@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.com.hakim.androidtraining;
+package cn.com.hakim.androidtraining.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -32,6 +32,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import cn.com.hakim.androidtraining.R;
 import cn.com.hakim.androidtraining.helper.ItemTouchHelperAdapter;
 import cn.com.hakim.androidtraining.helper.ItemTouchHelperViewHolder;
 import cn.com.hakim.androidtraining.helper.OnStartDragListener;

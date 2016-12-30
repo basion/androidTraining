@@ -1,4 +1,4 @@
-package cn.com.hakim.androidtraining;
+package cn.com.hakim.androidtraining.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import cn.com.hakim.androidtraining.R;
 
 /**
  * Created by Administrator on 2016/8/4.
