@@ -24,6 +24,9 @@ import android.widget.OverScroller;
 import android.widget.Scroller;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+
 import cn.com.hakim.androidtraining.R;
 
 /**
@@ -101,7 +104,7 @@ public class NestedTwoLinearLayout extends LinearLayout implements NestedScrolli
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        hideViewHeight = hideView.getMeasuredHeight();
+        hideViewHeight = hideView.getMeasuredHeight();//此时获取高度能保证已经测绘完毕
         scrollRange = hideViewHeight;
     }
 
@@ -406,4 +409,10 @@ public class NestedTwoLinearLayout extends LinearLayout implements NestedScrolli
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
     }
+
+    private void test(){
+        HashMap<String,View> map = new HashMap<>();
+        Hashtable<String,View> table = new Hashtable<>();
+    }
+
 }

@@ -55,40 +55,4 @@ public class CustomTooBarLayout extends CoordinatorLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
-    public static class Behavior extends AppBarLayout.Behavior{
-        @Override
-        public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed) {
-            super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
-        }
-
-        @Override
-        public void onNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-            super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-        }
-
-        @Override
-        public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, float velocityX, float velocityY) {
-            return super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY);
-        }
-
-        @Override
-        public void onNestedScrollAccepted(CoordinatorLayout coordinatorLayout, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes) {
-            super.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
-        }
-
-        @Override
-        public boolean onNestedFling(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, float velocityX, float velocityY, boolean consumed) {
-            return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
-        }
-
-        @Override
-        public boolean onStartNestedScroll(CoordinatorLayout parent, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes) {
-            return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes);
-        }
-
-        @Override
-        public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl, View target) {
-            super.onStopNestedScroll(coordinatorLayout, abl, target);
-        }
-    }
 }

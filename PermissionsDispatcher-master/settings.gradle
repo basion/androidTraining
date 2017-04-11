@@ -1,2 +1,2 @@
-include ':library', ':processor', ':sample', ':lint', ':androidTraining', ':viewPagerIndicator_Library'
+include ':library', ':processor', ':sample', ':lint', ':androidTraining', ':viewPagerIndicator_Library', ':sample-okhttp', ':okhttputils', ':themeapp', ':viewpagertest'
 include ':hotspotActivity'

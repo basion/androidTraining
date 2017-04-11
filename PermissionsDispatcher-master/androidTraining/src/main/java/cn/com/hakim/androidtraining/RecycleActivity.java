@@ -1,20 +1,28 @@
 package cn.com.hakim.androidtraining;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.WindowInsetsCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowInsets;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.hakim.androidtraining.adapter.MyAdapter;
+
 
 /**
  * Created by Administrator on 2016/8/1.
@@ -51,7 +59,6 @@ public class RecycleActivity extends AppCompatActivity{
         initData();
         initView();
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 //        switch (item.getItemId()) {
@@ -62,12 +69,30 @@ public class RecycleActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    private static final String TAG = "RecycleActivity";
     List<String> data;
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new GridDividerDecorationOld(this));
         mRecyclerView.setAdapter(new MyAdapter(this,data));
+        ViewCompat.setOnApplyWindowInsetsListener(collapsingToolbar,new android.support.v4.view.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                if (insets!=null){
+                    int top = insets.getSystemWindowInsetTop();
+                    int bottom = insets.getSystemWindowInsetBottom();
+                    int left = insets.getSystemWindowInsetLeft();
+                    int right = insets.getSystemWindowInsetRight();
+                    Log.e(TAG,"top = "+top);
+                    Log.e(TAG,"bottom = "+bottom);
+                    Log.e(TAG,"left = "+left);
+                    Log.e(TAG,"right = "+right);
+                }
+
+                return insets;
+            }
+        });
     }
 
     private void initData() {

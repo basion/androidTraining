@@ -169,4 +169,26 @@
         android:id="@+id/bt_elema_n"
         android:layout_below="@+id/bt_behavior"
         android:text="饿了吗"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_test_range"
+        android:layout_toRightOf="@+id/bt_elema_n"
+        android:layout_below="@+id/bt_behavior"
+        android:text="测试range"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_test_http"
+        android:layout_toRightOf="@+id/bt_test_range"
+        android:layout_below="@+id/bt_behavior"
+        android:text="测试http"/>
+    <Button
+        android:id="@+id/bt_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="theme"
+        android:layout_toRightOf="@+id/bt_test_http"
+        android:layout_alignBottom="@+id/bt_test_http"/>
+
 </RelativeLayout>

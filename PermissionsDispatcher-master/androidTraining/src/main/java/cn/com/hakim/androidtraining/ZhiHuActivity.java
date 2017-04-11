@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +53,7 @@ public class ZhiHuActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.tab_main);
         mViewPager = (ViewPager) findViewById(R.id.pager_main);
         setupTablayout();
+        addLastPageListener();
         View view  = findViewById(R.id.layout_parent);
 //        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
         mHandler = new MyHandler(this);
@@ -60,7 +62,16 @@ public class ZhiHuActivity extends AppCompatActivity {
         message.obj = 2;
         mHandler.sendMessageDelayed(message,3000);
     }
-
+    private static final String TAG = "zhihuActivity";
+    private void addLastPageListener(){
+        mViewPager.setOnTouchListener(new View.OnTouchListener() {//当view设置有OnTouchEventListener监听时，该监听在view自身的onTouch之前回调
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e(TAG,"OnTouchListener.onTouch===");
+                return false;
+            }
+        });
+    }
     private MyBottomBehavior.OnStateChangedListener onStateChangedListener = new MyBottomBehavior.OnStateChangedListener() {
         @Override
         public void onChanged(boolean isShow) {

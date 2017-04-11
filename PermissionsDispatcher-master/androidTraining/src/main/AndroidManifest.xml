@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.com.hakim.androidtraining">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -13,6 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".Application"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -61,6 +64,9 @@
         <activity android:name=".NestedScrollActivity"/>
         <activity android:name=".NestedTwoActivity"/>
         <activity android:name=".ElemaActivityN"/>
+        <activity android:name=".RangeActivity"/>
+        <activity android:name=".HttpActivity"/>
+        <activity android:name=".plugin.ThemeActivity"/>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

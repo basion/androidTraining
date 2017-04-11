@@ -42,6 +42,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.com.hakim.androidtraining.plugin.ThemeActivity;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -93,11 +94,20 @@ public class MainActivity extends AppCompatActivity
     Button takePicActivity;
     Button ballsButton;
     Button elemaButton;
+    Button rangeButton;
     TextInputEditText nameInput;
     AppCompatEditText passInput;
     Button contentButton;
     Button nestedWtoButton;
+    Button httpButton;
+    Button themeButton;
     private void initView() {
+        themeButton = (Button) findViewById(R.id.bt_theme);
+        themeButton.setOnClickListener(this);
+        httpButton = (Button) findViewById(R.id.bt_test_http);
+        httpButton.setOnClickListener(this);
+        rangeButton = (Button) findViewById(R.id.bt_test_range);
+        rangeButton.setOnClickListener(this);
         elemaButtonN = (Button) findViewById(R.id.bt_elema_n);
         elemaButtonN.setOnClickListener(this);
         nestedWtoButton = (Button) findViewById(R.id.nested_two);
@@ -302,6 +312,15 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.bt_elema_n){
             Intent intent = new Intent(this,ElemaActivityN.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_test_range){
+            Intent intent = new Intent(this,RangeActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_test_http){
+            Intent intent = new Intent(this,HttpActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.bt_theme){
+            Intent intent = new Intent(this, ThemeActivity.class);
             startActivity(intent);
         }
     }

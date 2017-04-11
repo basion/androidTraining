@@ -25,6 +25,7 @@ android {
             targetSdkVersion 22
         }
     }
+    buildToolsVersion '25.0.0'
 }
 
 dependencies {

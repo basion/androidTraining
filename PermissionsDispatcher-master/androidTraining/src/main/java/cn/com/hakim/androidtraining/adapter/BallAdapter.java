@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import cn.com.hakim.androidtraining.BR;
 import cn.com.hakim.androidtraining.R;
 import cn.com.hakim.androidtraining.model.Ball;
 
@@ -51,7 +52,7 @@ public class BallAdapter extends RecyclerView.Adapter<BallAdapter.ViewHolder> im
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Ball ball = balls.get(position);
-        holder.getBinding().setVariable(cn.com.hakim.androidtraining.BR.ball,ball);
+        holder.getBinding().setVariable(BR.ball,ball);//cn.com.hakim.androidtraining.model.Ball
         holder.getBinding().executePendingBindings();
         holder.ballButton.setTag(position);
         holder.ballButton.setOnClickListener(this);
